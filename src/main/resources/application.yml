@@ -1,0 +1,36 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+  datasource:
+    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: ticket
+  mvc:
+    favicon:
+      enabled: false
+  mqtt:
+    username: admin
+    password: 123456
+  #    正式环境使用
+    url: tcp://tobacco.sun-hyt.com:10000
+    client.id: shopping
+    completionTimeout: 3000
+    keepalive: 20
+  data:
+ 
+mybatis:
+  mapper-locations: ['classpath:mapper/*.xml']
+  type-aliases-package: com.hyt.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+server:
+     port: 8095
+ 
+
+
+
+
