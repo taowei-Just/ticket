@@ -18,7 +18,7 @@ public class TestService  {
     
     public List < String> testSql (int id){
 
-        Crawl.main(new String[]{});        
+//        Crawl.main(new String[]{});        
         
         return testmapper.test(id , "test");
     }

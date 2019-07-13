@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.IssueInfoMapper">
+	<!-- 开启二级缓存 -->
+	<cache eviction="FIFO"
+		   flushInterval="6000"
+		   size="512"
+		   readOnly="true" />
+	
+ <insert id="insertIssue" parameterType="com.example.demo.data.Issue">
+	 insert into issue (`id`, `time`, `issueId`, `numberS`, `timepoke`, `ticketId` )values (#{id}, #{time}, #{issueId}, #{numberS}, #{timepoke}, #{ticketId})
+ </insert>
+
+	<select id="selectMaxIssue" resultType="com.example.demo.data.Issue">
+		select max(issueId) as issueId from issue
+	</select>
+</mapper>

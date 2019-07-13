@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PlanDetailMapper">
+	<!-- 开启二级缓存 -->
+	<cache eviction="FIFO"
+		   flushInterval="6000"
+		   size="512"
+		   readOnly="true" />
+	
+	<select id="getMaxIssuePlan"  parameterType="String" resultType="com.example.demo.data.PlanDetail">
+		select   max(issue) as issue from ${tableName} 
+	</select>
+	
+	<resultMap id="planLimitList"  type="com.example.demo.data.PlanDetail"></resultMap>
+	
+	<select id="selectPlansWithLimit"   resultMap="planLimitList">
+	 select *from ${tableName}  LIMIT#{limit}  ORDER BY issue DESC 
+	</select>
+
+
+	<insert id="insertPlanS"  useGeneratedKeys="false">
+		insert into ${tableName}
+		(   `host`, `name`, `detail`, `issue`, `time`, `planDetail`, `winer`, `ticketKindId`, `pagerId`,
+		 `playedId`, `planKindId`, `planExact`, `timepoke`)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.host},
+			#{item.name},
+			#{item.detail},
+			#{item.issue},
+			#{item.time},
+			#{item.planDetail},
+			#{item.winer},
+			#{item.ticketKindId},
+			#{item.pagerId},
+			#{item.playedId},
+			#{item.planKindId},
+			#{item.planExact},
+			#{item.timepoke}
+			)
+		</foreach>
+	</insert>
+	
+	<update id="updataPlan"  >
+		update   ${tableName} set winer = #{planDetail.winer} ,timepoke=#{planDetail.timepoke} , planExact=#{planDetail.planExact} ,  time=#{planDetail.time}    where  issue=#{planDetail.issue}  
+	</update>
+ 
+ 
+
+</mapper>

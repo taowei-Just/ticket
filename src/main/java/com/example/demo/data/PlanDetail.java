@@ -27,8 +27,151 @@ public class PlanDetail {
     // 计划内容
     public  String planDetail;
     // 计划准确性
-    public   int planExact;  // 中  ， 挂 ， 等开
+    public   int planExact;  //  0挂 ，  1 中  ，  2 等开
     // 开奖信息  
-    public   String winer;   // 具体号码 或描述 ， -- 为无法读取到 （不是关键信息）
+    public   String winer  ;   // 具体号码 或描述 ， -- 为无法读取到 （不是关键信息）
+    
+    // 对应的规则id
+    int ruleId ;
 
+    public int getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(int ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public void setTicketKindId(int ticketKindId) {
+        this.ticketKindId = ticketKindId;
+    }
+
+    public void setPagerId(int pagerId) {
+        this.pagerId = pagerId;
+    }
+
+    public void setPlayedId(int playedId) {
+        this.playedId = playedId;
+    }
+
+    public void setPlanKindId(int planKindId) {
+        this.planKindId = planKindId;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    public void setIssueId(String issueId) {
+        this.issueId = issueId;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setTimepoke(long timepoke) {
+        this.timepoke = timepoke;
+    }
+
+    public void setPlanDetail(String planDetail) {
+        this.planDetail = planDetail;
+    }
+
+    public void setPlanExact(int planExact) {
+        this.planExact = planExact;
+    }
+
+    public void setWiner(String winer) {
+        this.winer = winer;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public int getTicketKindId() {
+        return ticketKindId;
+    }
+
+    public int getPagerId() {
+        return pagerId;
+    }
+
+    public int getPlayedId() {
+        return playedId;
+    }
+
+    public int getPlanKindId() {
+        return planKindId;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public String getIssueId() {
+        return issueId;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public long getTimepoke() {
+        return timepoke;
+    }
+
+    public String getPlanDetail() {
+        return planDetail;
+    }
+
+    public int getPlanExact() {
+        return planExact;
+    }
+
+    public String getWiner() {
+        return winer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "PlanDetail{" +
+                "name='" + name + '\'' +
+                ", host='" + host + '\'' +
+                ", detail='" + detail + '\'' +
+                ", ticketKindId=" + ticketKindId +
+                ", pagerId=" + pagerId +
+                ", playedId=" + playedId +
+                ", planKindId=" + planKindId +
+                ", issue='" + issue + '\'' +
+                ", issueId='" + issueId + '\'' +
+                ", time='" + time + '\'' +
+                ", timepoke=" + timepoke +
+                ", planDetail='" + planDetail + '\'' +
+                ", planExact=" + planExact +
+                ", winer='" + winer + '\'' +
+                ", ruleId=" + ruleId +
+                '}';
+    }
 }
