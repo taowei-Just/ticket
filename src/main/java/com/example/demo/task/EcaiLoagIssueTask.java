@@ -28,9 +28,8 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
 
     @Override
     public void run() {
-
-
         try {
+            o.e(api.toString());
             switch (api.getType()) {
                 case 1:
                     if (api.getApiId().equals("2"))
@@ -42,16 +41,18 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
                     post01();
                     break;
             }
-        } catch (IOException e) {
+        } catch ( Exception e) {
             e.printStackTrace();
+            loadIssueCallback.onIssue(null);
+
         }
 
     }
 
     private void get02() throws IOException {
-        o.e("get02"  );
-
-        String text = Jsoup.connect("http://ttycp8.com/v/lottery/openInfo?gameId=79").ignoreContentType(true).userAgent("Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.15)").get().text();
+//        o.e("get02"  );
+        String url = api.getHost() + api.getPath();
+        String text = Jsoup.connect(url).ignoreContentType(true).userAgent("Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.15)").get().text();
 //        o.e(text);
         TtycpData2 ttycpData2 = new Gson().fromJson(text, TtycpData2.class);
         ttycpData2.getPre().setOpenNum(spStr(ttycpData2.getPre().getOpenNum()));
@@ -66,13 +67,13 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
             e.printStackTrace();
         }
         issue.setTicketId(api.getTicketId());
-        o.e("get02" + issue.toString());
+//        o.e("get02" + issue.toString());
         if (loadIssueCallback != null && !close)
             loadIssueCallback.onIssue(issue);
     }
 
     private void get01() {
-        o.e("get01");   
+//        o.e("get01");   
         String url = api.getHost() + api.getPath();
      
         
@@ -91,7 +92,7 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
                     e.printStackTrace();
                 }
                 issue.setTicketId(api.getTicketId());
-                o.e("get01" + issue.toString());
+//                o.e("get01" + issue.toString());
                 if (loadIssueCallback != null && !close)
                     loadIssueCallback.onIssue(issue);
             }
@@ -99,7 +100,7 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
     }
 
     private void post01() {
-        o.e("post01");
+//        o.e("post01");
    
         try {
             HashMap<String, String> parame = new HashMap<>();
@@ -120,7 +121,7 @@ public class EcaiLoagIssueTask implements Runnable, IssueTask {
                     issue.setTimepoke(Long.valueOf(netData.getData().getData().getList().get(0).getOpeningTime()) * 1000);
                     issue.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(issue.getTimepoke())));
                     issue.setTicketId(api.getTicketId());
-                    o.e("post01" + issue.toString());
+//                    o.e("post01" + issue.toString());
 
                     if (loadIssueCallback != null && !close)
                         loadIssueCallback.onIssue(issue);

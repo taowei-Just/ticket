@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+	<!-- 开启二级缓存 -->
+	<cache eviction="FIFO"
+		   flushInterval="6000"
+		   size="512"
+		   readOnly="true" />
+	
+	<resultMap id="apiList" type="com.example.demo.data.User" />
+	
+	<select id="selectUserByStatus"  parameterType="Integer"  resultMap="apiList">
+		select  *  from user  where  status =#{status}
+	</select>
+	
+	<select id="selectUserByAccount"  parameterType="String"  resultType="com.example.demo.data.User">
+		select  *  from user  where  account =#{account}
+	</select>
+<select id="selectUserByAccountAndPassword"   resultType="com.example.demo.data.User">
+		select  *  from user  where  account =#{account} and password=#{password}
+	</select>
+<select id="selectUserByIdentifyId"  parameterType="String"  resultType="com.example.demo.data.User">
+		select  *  from user  where  identityId =#{identityId}
+	</select>
+	<update id="updataUser" parameterType="com.example.demo.data.User">
+		update user set  name=#{user.name},  nick=#{user.nick},  headImg=#{user.headImg},
+		 phone=#{user.phone}, wxid=#{user.wxid}, alid=#{user.alid}, detail=#{user.detail}
+	</update>
+	<update id="updataUserPassword" parameterType="com.example.demo.data.User">
+		update user set  password=#{user.password} 
+	</update>
+
+	<insert id="insertUser" parameterType="com.example.demo.data.User"   >
+		insert  into user (  `name`, `nick`, `headImg`, `account`, `password`, `phone`, `identifyId`, `wxid`, `alid`, `otherid`, `detail`, `status`) 
+		VALUES (#{user.name},#{user.nick},#{user.headImg},#{user.account},#{user.password},#{user.phone},
+		#{user.identifyId},#{user.wxid},#{user.alid},#{user.otherid},#{user.detail},#{user.status})
+	</insert>
+</mapper>

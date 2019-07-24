@@ -4,10 +4,15 @@ package com.example.demo.data;
 public class Issue {
     
     int id ;
+    // 期号
     String issueId ;
+    // 数据
     String   numberS ;
+    // 日期
     String time ;
+    // 时间戳
     long timepoke ;
+    // 彩票类型id
     int ticketId ;
 
     public int getTicketId() {

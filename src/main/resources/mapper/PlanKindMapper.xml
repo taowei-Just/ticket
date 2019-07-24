@@ -10,8 +10,15 @@
 	<resultMap id="list_plan_kind" type="com.example.demo.data.PlanKind"></resultMap>
 	
 	<select id="listPalnKind"   resultMap="list_plan_kind">
-		select `id`, `detail`, `ticketKindId`, `pagerId`, `name`, `host`, `detailName`,  `plyedId` ,`status` from plankind  
+		select * from plankind  order by id desc 
 	</select>
+	<select id="selectKindById"   parameterType="Integer" resultType="com.example.demo.data.PlanKind">
+		select * from plankind  where  id= #{planId} order by id  desc 
+	</select>
+	
+	<update id="updataBind" parameterType="com.example.demo.data.PlanKind">
+		update plankind set yieldId =#{PlanKind.yieldId}  where id =#{PlanKind.id} 
+	</update>
  
 
 </mapper>

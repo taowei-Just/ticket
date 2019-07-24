@@ -18,30 +18,15 @@ public class PlanDetail {
     public  int planKindId;
     // 当前期号
     public  String issue;
-    // 期号id
-    public  String issueId;
     // 时间
     public   String time;
     //时间戳
     public   long timepoke;
-    // 计划内容
-    public  String planDetail;
     // 计划准确性
     public   int planExact;  //  0挂 ，  1 中  ，  2 等开
     // 开奖信息  
     public   String winer  ;   // 具体号码 或描述 ， -- 为无法读取到 （不是关键信息）
     
-    // 对应的规则id
-    int ruleId ;
-
-    public int getRuleId() {
-        return ruleId;
-    }
-
-    public void setRuleId(int ruleId) {
-        this.ruleId = ruleId;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -74,9 +59,6 @@ public class PlanDetail {
         this.issue = issue;
     }
 
-    public void setIssueId(String issueId) {
-        this.issueId = issueId;
-    }
 
     public void setTime(String time) {
         this.time = time;
@@ -86,9 +68,6 @@ public class PlanDetail {
         this.timepoke = timepoke;
     }
 
-    public void setPlanDetail(String planDetail) {
-        this.planDetail = planDetail;
-    }
 
     public void setPlanExact(int planExact) {
         this.planExact = planExact;
@@ -126,9 +105,6 @@ public class PlanDetail {
         return issue;
     }
 
-    public String getIssueId() {
-        return issueId;
-    }
 
     public String getTime() {
         return time;
@@ -138,9 +114,6 @@ public class PlanDetail {
         return timepoke;
     }
 
-    public String getPlanDetail() {
-        return planDetail;
-    }
 
     public int getPlanExact() {
         return planExact;
@@ -165,13 +138,10 @@ public class PlanDetail {
                 ", playedId=" + playedId +
                 ", planKindId=" + planKindId +
                 ", issue='" + issue + '\'' +
-                ", issueId='" + issueId + '\'' +
                 ", time='" + time + '\'' +
                 ", timepoke=" + timepoke +
-                ", planDetail='" + planDetail + '\'' +
                 ", planExact=" + planExact +
                 ", winer='" + winer + '\'' +
-                ", ruleId=" + ruleId +
                 '}';
     }
 }

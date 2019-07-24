@@ -12,6 +12,6 @@
  </insert>
 
 	<select id="selectMaxIssue" resultType="com.example.demo.data.Issue">
-		select max(issueId) as issueId from issue
+		select *  from issue WHERE   issueId = (SELECT max(issueId) FROM issue)
 	</select>
 </mapper>

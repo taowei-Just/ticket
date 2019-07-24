@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.YieldKindMapper">
+    <!-- 开启二级缓存 -->
+    <cache eviction="FIFO"
+           flushInterval="6000"
+           size="512"
+           readOnly="true"/>
+
+
+    <select id="selectYieldKindByID" parameterType="Integer" resultType="com.example.demo.data.YieldKind">
+		select  *  from yieldkind  where id =#{id} order by  id desc 
+	</select>
+
+    <resultMap id="yieldList" type="com.example.demo.data.YieldKind"></resultMap>
+    
+    <select id="selectYieldKindByStatus" parameterType="Integer" resultMap="yieldList">
+		select  *  from yieldkind  where status =#{status}  order by id asc 
+	</select>
+    
+    <select id="listYieldKinds" resultMap="yieldList">
+        select *from  yieldkind  where status >0 order by id desc 
+    </select>
+
+    <update id="updataStatus" parameterType="com.example.demo.data.YieldKind"> 
+    update yieldkind set   
+         rate=#{YieldKind.rate}, 
+         positiveCount=#{YieldKind.positiveCount},
+         maxPositiveCount=#{YieldKind.maxPositiveCount}, 
+         negationCount=#{YieldKind.negationCount}, 
+         maxNegationCount=#{YieldKind.maxNegationCount},
+         status=#{YieldKind.status}
+      where  id =#{YieldKind.id}
+    </update>
+
+</mapper>

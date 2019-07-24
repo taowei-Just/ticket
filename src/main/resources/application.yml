@@ -2,7 +2,7 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
   datasource:
-    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,7 +15,7 @@ spring:
     password: 123456
   #    正式环境使用
     url: tcp://tobacco.sun-hyt.com:10000
-    client.id: shopping
+    client.id: ticket
     completionTimeout: 3000
     keepalive: 20
   data:
@@ -25,7 +25,6 @@ mybatis:
   type-aliases-package: com.hyt.pojo
   configuration:
     map-underscore-to-camel-case: true
-
 
 server:
      port: 8095

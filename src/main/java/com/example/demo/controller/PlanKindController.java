@@ -18,12 +18,10 @@ public class PlanKindController {
     PlanKindService planKindService;
     @Autowired
     EngineTask engineTask ;
-
     @GetMapping
     public List<PlanKind> listPlanKindS() {
         List<PlanKind> planKinds = planKindService.listPalnKind();
         System.err.println(planKinds.toString());
-        test(planKinds);
         return planKinds;
     }
 

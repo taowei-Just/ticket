@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PlanYieldMapper">
+    <!-- 开启二级缓存 -->
+    <cache eviction="FIFO"
+           flushInterval="6000"
+           size="512"
+           readOnly="true"/>
+
+
+    <resultMap id="yieldList" type="com.example.demo.data.PlanYield"/>
+    <select id="selectPlanYield" resultMap="yieldList">
+		select  *  from ${tableName}   order by  id desc 
+	</select>
+
+    <update id="updataStatus">
+		update ${tableName} set 
+		number=#{PlanYield.number},
+		status=#{PlanYield.status},
+		flag=#{PlanYield.flag},
+		time=#{PlanYield.time},
+		data=#{PlanYield.data}
+		where  issue= #{PlanYield.issue}
+	</update>
+
+    <insert id="insertPlanyield">
+		insert into ${tableName}  
+		(  `ranking`, `num`, `name`, `positiveCount`, `maxPositiveCount`,   `negationCount`, `maxNegationCount`, `planId`,
+		 `number`, `ruleId`, `status`, `flag`, `issue`, `time`, `data`)
+		 values (  #{PlanYield.ranking} ,#{PlanYield.num},#{PlanYield.name},#{PlanYield.positiveCount}
+		 ,#{PlanYield.maxPositiveCount},#{PlanYield.negationCount},#{PlanYield.maxNegationCount},#{PlanYield.planId},
+		 #{PlanYield.number},#{PlanYield.ruleId},#{PlanYield.status},#{PlanYield.flag},#{PlanYield.issue},
+		 #{PlanYield.time},#{PlanYield.data} )
+	</insert>
+
+    <select id="selectPlanYieldList" resultMap="yieldList">
+		select  * from ${yieldKind.tabName}  order  by id desc  LIMIT 0,#{limit}  
+	</select>
+
+    <select id="selectPlanYieldByStatus" resultMap="yieldList">
+		select  * from ${tableName}  where  status=#{status} order  by id desc 
+	</select>
+    <select id="selectMaxNByNum" parameterType="com.example.demo.data.YieldKind" resultType="Integer">
+		select  max(maxNegationCount) from ${YieldKind.tabName}  
+	</select>
+    <select id="selectMaxPByNum" parameterType="com.example.demo.data.YieldKind" resultType="Integer">
+		select  max(maxPositiveCount)from ${YieldKind.tabName}  
+	</select>
+
+</mapper>

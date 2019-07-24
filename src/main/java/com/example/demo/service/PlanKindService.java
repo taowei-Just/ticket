@@ -9,14 +9,9 @@ import java.util.List;
 
 @Service
 public class PlanKindService {
-
     @Autowired
     PlanKindMapper planKindMapper ;
-    
     public  List<PlanKind> listPalnKind (){
-        
             return planKindMapper.listPalnKind();
-      
     }
-    
 }

@@ -14,13 +14,13 @@
 	<resultMap id="planLimitList"  type="com.example.demo.data.PlanDetail"></resultMap>
 	
 	<select id="selectPlansWithLimit"   resultMap="planLimitList">
-	 select *from ${tableName}  LIMIT#{limit}  ORDER BY issue DESC 
+	 select *from ${tableName}    ORDER BY issue DESC LIMIT 0,#{limit}
 	</select>
 
 
 	<insert id="insertPlanS"  useGeneratedKeys="false">
 		insert into ${tableName}
-		(   `host`, `name`, `detail`, `issue`, `time`, `planDetail`, `winer`, `ticketKindId`, `pagerId`,
+		(   `host`, `name`, `detail`, `issue`, `time`,   `winer`, `ticketKindId`, `pagerId`,
 		 `playedId`, `planKindId`, `planExact`, `timepoke`)
 		values
 		<foreach collection="list" item="item" index="index" separator=",">
@@ -30,7 +30,6 @@
 			#{item.detail},
 			#{item.issue},
 			#{item.time},
-			#{item.planDetail},
 			#{item.winer},
 			#{item.ticketKindId},
 			#{item.pagerId},

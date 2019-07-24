@@ -2,6 +2,12 @@ package com.example.demo.data;
 
 // 计划师
 public class PlanKind {
+
+    int id ;
+    // 计划位置
+    public int  ranking ;
+    // 计划号码数量
+    public int num ;
     // 计划页面地址
     public    String host;
     // 计划师名称
@@ -20,6 +26,31 @@ public class PlanKind {
     public   String  detailName;
     // 计划师启用状态
     public  int status ;  //0 未启用 ，1 可用  ，2 暂停使用
+    public int ruleId ;
+
+    // 输出计划的id
+    public int yieldId ;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public int getYieldId() {
+        return yieldId;
+    }
+
+    public void setYieldId(int yieldId) {
+        this.yieldId = yieldId;
+    }
+
+    public int getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(int ruleId) {
+        this.ruleId = ruleId;
+    }
 
     public int getPlyedId() {
         return plyedId;
@@ -93,11 +124,28 @@ public class PlanKind {
         this.detailName = detailName;
     }
 
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     @Override
     public String toString() {
         return "PlanKind{" +
-                "host='" + host + '\'' +
+                "ranking=" + ranking +
+                ", num=" + num +
+                ", host='" + host + '\'' +
                 ", name='" + name + '\'' +
                 ", detail='" + detail + '\'' +
                 ", planId=" + planId +
@@ -106,6 +154,8 @@ public class PlanKind {
                 ", ticketKindId=" + ticketKindId +
                 ", detailName='" + detailName + '\'' +
                 ", status=" + status +
+                ", ruleId=" + ruleId +
+                ", yieldId=" + yieldId +
                 '}';
     }
 }
